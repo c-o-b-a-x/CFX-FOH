@@ -1,0 +1,20 @@
+# fly.toml app configuration file generated for cfx-foh on 2026-11-24T18:46:02Z
+#
+# See https://docs.fly.io/reference/configuration for information about how to use this file.
+#
+
+app = 'cfx-foh'
+primary_region = 'ams'
+
+[http_service]
+  auto_start_machines = true
+  auto_stop_machines = 'stop'
+  force_https = true
+  internal_port = 8080
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  cpu_kind = 'shared'
+  cpus = 1
+  memory = '256mb'
