@@ -1,0 +1,17 @@
+[Unit]
+Description=Discord ticket order bot
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=discordbot
+WorkingDirectory=/opt/ticket-order-bot
+# Use the output of `which node` for your server
+ExecStart=/usr/bin/node src/index.js
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
