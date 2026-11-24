@@ -107,7 +107,7 @@ Check `which node` and adjust `ExecStart` in the unit file if Node is installed 
 
 - **Railway** — deploy the repo, set the env variables in the dashboard, start command `npm start`. One replica.
 - **Render** — use a **Background Worker** (not a Web Service), build `npm ci`, start `npm start`.
-- **Fly.io** — the included `Dockerfile` works: `fly launch --no-deploy`, `fly secrets set DISCORD_TOKEN=… ORDER_CHANNEL_ID=… PING_USER_IDS=…`, `fly deploy`, and keep the machine count at 1 with auto-stop disabled.
+- **Fly.io** — the repo includes a root `fly.toml` with no `app` key, so the Fly dashboard's GitHub launch UI can supply the app name/region. Deploy from the dashboard, then add secrets in the app's **Secrets** page. No public HTTP service is created. The CLI equivalent is in `deploy/fly.toml.example`.
 
 On every platform, set the variables from `.env.example` in the host's secret/environment settings rather than committing `.env`.
 

@@ -1,0 +1,20 @@
+# Fly.io config for the ticket order bot.
+#
+# The bot only connects outbound to Discord, so there is deliberately no
+# [http_service] / [[services]] section: no public port, no proxy, no health
+# checks against a port nothing listens on.
+
+app = "cfx-foh"
+primary_region = "ams"
+kill_signal = "SIGTERM"
+kill_timeout = 20
+
+[build]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "512mb"
+
+[[restart]]
+  policy = "always"
