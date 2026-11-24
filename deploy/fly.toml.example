@@ -1,0 +1,22 @@
+# Fly.io app config for the ticket order bot.
+#
+# 1. `fly launch --no-deploy` creates an app and a fly.toml.
+# 2. Replace the generated fly.toml with this file (edit name/region).
+# 3. `fly secrets set ...` then `fly deploy --ha=false`.
+#
+# There is no [http_service] / [[services]] section on purpose: the bot only
+# connects out to Discord and must not be exposed to the internet.
+
+app = "your-unique-app-name"
+primary_region = "iad"
+kill_signal = "SIGTERM"
+kill_timeout = 20
+
+[build]
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
+
+[[restart]]
+  policy = "always"

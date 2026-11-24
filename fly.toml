@@ -1,21 +1,20 @@
-# fly.toml app configuration file generated for cfx-foh on 2026-11-24T18:43:30Z
+# Fly.io config for the ticket order bot.
 #
-# See https://docs.fly.io/reference/configuration for information about how to use this file.
-#
+# The bot only connects outbound to Discord, so there is deliberately no
+# [http_service] / [[services]] section: no public port, no proxy, no health
+# checks against a port nothing listens on.
 
-app = 'cfx-foh'
-primary_region = 'ams'
+app = "cfx-foh"
+primary_region = "ams"
+kill_signal = "SIGTERM"
+kill_timeout = 20
 
 [build]
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
 
 [[vm]]
-  memory = '256mb'
-  cpu_kind = 'shared'
+  cpu_kind = "shared"
   cpus = 1
+  memory = "512mb"
+
+[[restart]]
+  policy = "always"
